@@ -9,7 +9,11 @@ python -m venv .venv
 ## Activate venv
 
 ```bash
+# mac 
 source .venv/bin/activate
+
+# windows
+.venv\scripts\activate
 ```
 
 ## Installation

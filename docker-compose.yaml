@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - microservice
+
+  microservice:
+    build:
+      context: ./microservice
+    ports:
+      - "8001:8001"
