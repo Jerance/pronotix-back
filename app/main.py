@@ -1,24 +1,17 @@
 from fastapi import FastAPI
-from app.schema import MatchPredict
-import requests
 import uvicorn
 
-MICROSERVICE_URL = "http://127.0.0.1:8001/"  
+from routes import predict_router
+
 app = FastAPI()
 
+
 @app.get("/")
-async def root():
-    return {"message": "Hello World"}
+async def health_check():
+    return {"message": "OK"}
 
-@app.post("/predict")
-def predict(match_data: MatchPredict):
 
-    try:
-        response = requests.post(MICROSERVICE_URL, json=match_data)
-        response_data = response.json()
-        return {"prediction": response_data["prediction"]}
-    except Exception as e:
-        return {"error": str(e)}
+app.include_router(predict_router)
 
 if __name__ == "__main__":
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)

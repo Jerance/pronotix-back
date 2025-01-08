@@ -1,1 +1,0 @@
-from app.schema.predict import MatchPredict
