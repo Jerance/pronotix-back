@@ -1,20 +1,17 @@
-# Utilise une image Python de base
+# Utiliser l'image Python officielle
 FROM python:3.12-slim
 
-# Définit le répertoire de travail dans le conteneur
+# Définir le répertoire de travail
 WORKDIR /app
 
-# Copie le fichier de dépendances
-COPY requirements.txt .
-
-# Crée un environnement virtuel
-RUN python -m venv .venv
-
-# Active l'environnement virtuel et installe les dépendances
-RUN ./.venv/bin/pip install -r requirements.txt
-
-# Copie le reste de ton application
+# Copier uniquement les fichiers nécessaires
 COPY . .
 
-# Commande par défaut (à adapter selon ton application)
-CMD ["python", "app.py"]
+# Installer les dépendances depuis requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Exposer le port utilisé par FastAPI
+EXPOSE 8000
+
+# Démarrer le serveur FastAPI avec uvicorn
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
