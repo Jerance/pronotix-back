@@ -3,7 +3,7 @@ import requests
 from os import getenv
 from dotenv import load_dotenv
 
-from schemas import MatchPredictionRequest
+from app.schemas import MatchPredictionRequest
 
 load_dotenv()
 

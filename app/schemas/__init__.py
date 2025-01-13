@@ -1,1 +1,1 @@
-from schemas.predict import MatchPredictionRequest
+from app.schemas.predict import MatchPredictionRequest
