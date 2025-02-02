@@ -9,7 +9,11 @@ python -m venv .venv
 ## Activate venv
 
 ```bash
+# mac 
 source .venv/bin/activate
+
+# windows
+.venv\scripts\activate
 ```
 
 ## Installation
@@ -27,5 +31,5 @@ pip freeze > requirements.txt
 ## Run with uvicorn
 
 ```bash
-uvicorn app.main:app --reload
+cd app && uvicorn main:app --reload
 ```

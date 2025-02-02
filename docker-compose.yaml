@@ -1,0 +1,35 @@
+services:
+  pronotix-back:
+    build:
+      context: ./pronotix-back
+      dockerfile: Dockerfile
+    env_file:
+      - ./pronotix-back/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./pronotix-back:/app
+    depends_on:
+      - pronotix-microservice
+
+  pronotix-microservice:
+    build:
+      context: ./pronotix-microservice
+      dockerfile: Dockerfile
+    env_file:
+      - ./pronotix-microservice/.env
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./pronotix-microservice:/app
+
+  pronotix-project-front:
+    build:
+      context: ./pronotix-project-front
+      dockerfile: Dockerfile
+    env_file:
+      - ./pronotix-project-front/.env
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./pronotix-project-front:/app
